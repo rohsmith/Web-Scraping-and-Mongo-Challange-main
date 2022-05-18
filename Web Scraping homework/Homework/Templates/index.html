@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mars data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class = "jumbotron text-center">
+        <h1>Mission to Mars</h1>
+        <p>
+            <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrap new data</a>
+        </p>
+    </div>
+    <p>
+        <h2>Latest News</h2>
+        <h4> {{mars_data["news_title"]}}</h4> 
+        {{mars_data["news_paragraph"]}}
+        <br>
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Featured Mars Image</h2>
+                <img src="{{mars_data.featured_image_url}}" alt="Main Image moon">  
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <h3>Mars Facts</h3>
+                    {{ mars_data["mars_facts"] | safe}}
+                  </div>
+            </div>
+        </div>
+        <br>
+        <h2 style="text-align:center">Mars Hemispheres</h2>
+        <div class="row">
+            <br>
+            {% for hem in mars_data.mars_hemispheres %} 
+            <div class="col-md-3">
+                <div class="card border-dark">
+                    <!-- <img width="200 px" height="200 px" src="{{hem.image_url}}"> -->
+                    <img class="img-fluid" src="{{hem.image_url}}">
+                    <p class="card-subtitle"> <bold><h4>{{hem.title}}</h4></bold></p>
+               </div>
+            </div>
+            {% endfor %}
+        </div>
+    </p>
+    
+    <hr>
+    <footer class="footer">
+      <span class="bottom">Mars Explore</span>
+      <div class="footer">&copy; Copyright Rohan Smith 2022
+    
+      </div>
+    </footer>
+</body>
+</html>
